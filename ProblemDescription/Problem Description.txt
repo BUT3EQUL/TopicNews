@@ -1,0 +1,18 @@
+[Application name]
+Topic News
+
+[Description]
+You see the fresh news by Google News. You can choose a category from following:
+ - Nation
+ - Politics
+ - Sports
+ - Technology
+ - World
+ - Society
+ - Entertainment
+ - Spotlight
+
+In addition, you can set the number of categories to be displayed on the screen.
+
+[Restriction]
+Android 2.3.3 or older
