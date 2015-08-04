@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/pref_topic_selecion">
+        <SwitchPreference
+            android:title="@string/topic_nation"
+            android:key="@string/pref_key_nation"
+            android:switchTextOn="@string/on"
+            android:switchTextOff="@string/off"
+            android:defaultValue="true" />
+
+        <SwitchPreference
+            android:title="@string/topic_politics"
+            android:key="@string/pref_key_politics"
+            android:switchTextOn="@string/on"
+            android:switchTextOff="@string/off"
+            android:defaultValue="true" />
+
+        <SwitchPreference
+            android:title="@string/topic_sports"
+            android:key="@string/pref_key_sports"
+            android:switchTextOn="@string/on"
+            android:switchTextOff="@string/off"
+            android:defaultValue="true" />
+
+        <SwitchPreference
+            android:title="@string/topic_technology"
+            android:key="@string/pref_key_technology"
+            android:switchTextOn="@string/on"
+            android:switchTextOff="@string/off"
+            android:defaultValue="true" />
+
+        <SwitchPreference
+            android:title="@string/topic_world"
+            android:key="@string/pref_key_world"
+            android:switchTextOn="@string/on"
+            android:switchTextOff="@string/off"
+            android:defaultValue="true" />
+
+        <SwitchPreference
+            android:title="@string/topic_society"
+            android:key="@string/pref_key_society"
+            android:switchTextOn="@string/on"
+            android:switchTextOff="@string/off"
+            android:defaultValue="true" />
+
+        <SwitchPreference
+            android:title="@string/topic_entertainment"
+            android:key="@string/pref_key_entertainment"
+            android:switchTextOn="@string/on"
+            android:switchTextOff="@string/off"
+            android:defaultValue="true" />
+
+        <SwitchPreference
+            android:title="@string/topic_pickup"
+            android:key="@string/pref_key_pickup"
+            android:switchTextOn="@string/on"
+            android:switchTextOff="@string/off"
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

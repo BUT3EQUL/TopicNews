@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NetImageView" >
+        <attr name="url" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="CheckListPreference">
+        <attr name="checkAll" format="string" />
+        <attr name="separator" format="string" />
+    </declare-styleable>
+</resources>

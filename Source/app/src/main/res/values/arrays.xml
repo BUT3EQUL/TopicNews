@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_genre_keys">
+        <item>@string/pref_key_nation</item>
+        <item>@string/pref_key_politics</item>
+        <item>@string/pref_key_sports</item>
+        <item>@string/pref_key_technology</item>
+        <item>@string/pref_key_world</item>
+        <item>@string/pref_key_society</item>
+        <item>@string/pref_key_entertainment</item>
+        <item>@string/pref_key_pickup</item>
+    </string-array>
+
+    <string-array name="topic_genre">
+        <item>@string/topic_nation</item>
+        <item>@string/topic_politics</item>
+        <item>@string/topic_sports</item>
+        <item>@string/topic_technology</item>
+        <item>@string/topic_world</item>
+        <item>@string/topic_society</item>
+        <item>@string/topic_entertainment</item>
+        <item>@string/topic_pickup</item>
+    </string-array>
+
+</resources>
