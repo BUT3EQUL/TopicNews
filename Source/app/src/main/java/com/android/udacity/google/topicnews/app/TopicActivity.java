@@ -1,10 +1,10 @@
 package com.android.udacity.google.topicnews.app;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -17,9 +17,13 @@ public class TopicActivity extends ActionBarActivity
 
     private boolean mIsTwoPainMode = false;
 
+    private Handler mHandler = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mHandler = new Handler();
 
         setContentView(R.layout.activity_main);
 
@@ -82,5 +86,10 @@ public class TopicActivity extends ActionBarActivity
                     .replace(R.id.fragment_container, fragment, tag)
                     .commit();
         }
+    }
+
+    @Override
+    public Handler getHandler() {
+        return mHandler;
     }
 }
