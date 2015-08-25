@@ -8,9 +8,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.android.udacity.google.topicnews.app.google.GoogleNewsTopic;
 import com.android.udacity.google.topicnews.app.sync.GoogleNewsSyncAdapter;
 import com.android.udacity.google.topicnews.app.tablet.GenreListFragment;
 import com.android.udacity.google.topicnews.app.tablet.NewsDetailListFragment;
+
+import java.util.List;
 
 public class TopicActivity extends ActionBarActivity
         implements GenreListFragment.Callback {
@@ -43,11 +46,6 @@ public class TopicActivity extends ActionBarActivity
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_topic, menu);
@@ -74,22 +72,32 @@ public class TopicActivity extends ActionBarActivity
     public void onItemClick(String genre) {
         GoogleNewsApplication.trace(getClass().getSimpleName(), "onItemClick() 2pain-mode:" + mIsTwoPainMode);
         if (mIsTwoPainMode) {
-            Bundle bundle = new Bundle();
-            bundle.putString(NewsDetailListFragment.EXTRA_NEWS_GENRE, genre);
-
-            Fragment fragment = new NewsDetailListFragment();
-            fragment.setArguments(bundle);
-
-            String tag = getString(R.string.tag_fragment_news_detail);
-
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, fragment, tag)
-                    .commit();
+            NewsDetailListFragment fragment = (NewsDetailListFragment) getSupportFragmentManager()
+                    .findFragmentByTag(getString(R.string.tag_fragment_news_detail));
+            if (fragment != null) {
+                fragment.updateCursor(genre);
+            }
         }
     }
 
     @Override
-    public Handler getHandler() {
-        return mHandler;
+    public void onContentChanged(List<GoogleNewsTopic> newList, String selectedGenre) {
+        GoogleNewsApplication.trace(getClass().getSimpleName(), "onContentChanged() 2pain-mode:" + mIsTwoPainMode);
+        if (mIsTwoPainMode) {
+            if (selectedGenre != null) {
+                GoogleNewsApplication.trace(getClass().getSimpleName(), "selected genre: " + selectedGenre);
+
+                GoogleNewsTopic category = GoogleNewsTopic.newCategory(selectedGenre);
+                GoogleNewsApplication.trace(getClass().getSimpleName(), "new genre list contains: " + newList.contains(category));
+                if (!newList.contains(category)) {
+                    NewsDetailListFragment fragment = (NewsDetailListFragment) getSupportFragmentManager()
+                            .findFragmentByTag(getString(R.string.tag_fragment_news_detail));
+                    if (fragment != null) {
+                        fragment.clearCursor();
+                    }
+                }
+            }
+        }
     }
+
 }

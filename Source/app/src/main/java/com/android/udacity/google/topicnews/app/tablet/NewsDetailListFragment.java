@@ -55,7 +55,10 @@ public class NewsDetailListFragment extends ListFragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        getLoaderManager().initLoader(DETAIL_LOADER, null, mAdapter);
+        setEmptyText(getString(R.string.list_content_no_topic));
+        if (mViewingGenre != null) {
+            getLoaderManager().initLoader(DETAIL_LOADER, null, mAdapter);
+        }
         super.onActivityCreated(savedInstanceState);
     }
 
@@ -65,6 +68,15 @@ public class NewsDetailListFragment extends ListFragment {
             outState.putString(EXTRA_VIEWING_GENRE, mViewingGenre);
         }
         super.onSaveInstanceState(outState);
+    }
+
+    public void updateCursor(String genre) {
+        mAdapter.setGenre(genre);
+        getLoaderManager().restartLoader(DETAIL_LOADER, null, mAdapter);
+    }
+
+    public void clearCursor() {
+        mAdapter.swapCursor(null);
     }
 
     private static class GoogleNewsDetailListAdapter extends CursorAdapter
@@ -97,6 +109,14 @@ public class NewsDetailListFragment extends ListFragment {
         public GoogleNewsDetailListAdapter(Context context, String gnere) {
             super(context, null, 0);
             mGenre = gnere;
+        }
+
+        public String getGenre() {
+            return mGenre;
+        }
+
+        public void setGenre(String genre) {
+            mGenre = genre;
         }
 
         @Override

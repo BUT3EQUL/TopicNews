@@ -174,21 +174,6 @@ public class GoogleNewsGenreListAdapter extends AbstractProjectionAdapter {
                 }
             } while (cursor.moveToNext());
         }
-
-        if (genreList.size() == 1) {
-            Activity activity = mParent.getActivity();
-            if (activity instanceof GenreListFragment.Callback) {
-                final GenreListFragment.Callback callback = (GenreListFragment.Callback) activity;
-                Handler handler = callback.getHandler();
-                handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        mParent.mListView.setItemChecked(0, true);
-                        callback.onItemClick(genreList.get(0));
-                    }
-                });
-            }
-        }
     }
 
     List<String> getGenreList() {

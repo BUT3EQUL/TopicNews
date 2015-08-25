@@ -1,7 +1,5 @@
 package com.android.udacity.google.topicnews.app.google;
 
-import android.net.Uri;
-
 import com.android.udacity.google.topicnews.app.GoogleNewsApplication;
 import com.android.udacity.google.topicnews.app.json.JSONReader;
 
@@ -11,7 +9,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class GoogleNewsAjaxReader extends JSONReader {
 
@@ -29,7 +26,7 @@ public class GoogleNewsAjaxReader extends JSONReader {
     }
 
     public GoogleNewsAjaxReader(String genre) {
-        super(buildUri(AJAX_GOOGLE_NEWS, genre).toString());
+        super(Utility.buildUri(AJAX_GOOGLE_NEWS, genre).toString());
     }
 
     @Override
@@ -42,8 +39,8 @@ public class GoogleNewsAjaxReader extends JSONReader {
 
             for (int i = 0; i < results.length(); i++) {
                 JSONObject element = results.getJSONObject(i);
-                String title = removeHtmlTags(convertUnsanitize(element.getString("title")));
-                String content = removeHtmlTags(convertUnsanitize(element.getString("content")));
+                String title = Utility.removeHtmlTags(Utility.convertUnsanitize(element.getString("title")));
+                String content = Utility.removeHtmlTags(Utility.convertUnsanitize(element.getString("content")));
                 String url = element.getString("url");
                 String publisher = element.getString("publisher");
                 String publishedDate = element.getString("publishedDate");
@@ -65,32 +62,5 @@ public class GoogleNewsAjaxReader extends JSONReader {
             e.printStackTrace();
         }
         return result;
-    }
-
-    
-
-    private static Uri buildUri(String base, String genre) {
-        Uri baseUri = Uri.parse(base);
-        return baseUri.buildUpon()
-                .appendQueryParameter("topic", genre)
-                .build();
-    }
-
-    private static String convertUnsanitize(String s) {
-        if (s == null) {
-            return null;
-        }
-
-        s = s.replaceAll("&#39;", "'");
-        s = s.replaceAll("&amp;", "&");
-        s = s.replaceAll("&gt;", ">");
-        s = s.replaceAll("&lt;", "<");
-        s = s.replaceAll("&amp;", "&");
-        return s;
-    }
-
-    private static String removeHtmlTags(String s) {
-        Pattern pattern = Pattern.compile("<.+?>");
-        return pattern.matcher(s).replaceAll("");
     }
 }

@@ -113,7 +113,10 @@ public abstract class AbstractProjectionAdapter extends ArrayAdapter<GoogleNewsT
         protected void onPostExecute(List<GoogleNewsTopic> googleNewsTopics) {
             GoogleNewsApplication.debug(getClass().getSimpleName(), "onPostExecute()");
             mRows.clear();
-            mRows.addAll(googleNewsTopics);
+            GoogleNewsApplication.debug(getClass().getSimpleName(), "GoogleNewsTopic is empty ? " + googleNewsTopics.isEmpty());
+            if (!googleNewsTopics.isEmpty()) {
+                mRows.addAll(googleNewsTopics);
+            }
             notifyDataSetChanged();
         }
     }

@@ -9,9 +9,11 @@
     <fragment
         android:name="com.android.udacity.google.topicnews.app.tablet.GenreListFragment"
         android:id="@+id/fragment_genre_list"
+        android:tag="@string/tag_fragment_genre_list"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2"
+        android:background="@drawable/solid_rectangle_grey"
         tools:layout="@layout/fragment_listview" />
 
     <FrameLayout
@@ -19,6 +21,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
+        android:background="@drawable/solid_rectangle_grey"
         tools:layout="@layout/fragment_listview" />
 
 </LinearLayout>

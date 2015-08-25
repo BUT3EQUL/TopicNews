@@ -1,5 +1,7 @@
 package com.android.udacity.google.topicnews.app.google;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -9,6 +11,7 @@ import java.net.URLDecoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.Objects;
 
 public class GoogleNewsTopic implements Parcelable {
 
@@ -145,4 +148,30 @@ public class GoogleNewsTopic implements Parcelable {
         return -1;
     }
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof GoogleNewsTopic) {
+            GoogleNewsTopic other = (GoogleNewsTopic) o;
+            if (!Objects.equals(title, other.title)) {
+                return false;
+            } else if (!Objects.equals(content, other.content)) {
+                return false;
+            } else if (!Objects.equals(url, other.url)) {
+                return false;
+            } else if (!Objects.equals(publisher, other.publisher)) {
+                return false;
+            } else if (!Objects.equals(publishedDate, other.publishedDate)) {
+                return false;
+            } else if (!Objects.equals(originImage, other.originImage)) {
+                return false;
+            } else if (!Objects.equals(thumbnail, other.thumbnail)) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
 }
